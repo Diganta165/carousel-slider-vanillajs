@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home-carousel</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+
+        :root {
+            --primaryColor: #95CA33;
+            --secondaryColor: #FFFFFF;
+            --themeFont: "Ubuntu";
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .s0203_universal * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--themeFont);
+        }
+
+        .s0203_container {
+            max-width: 1340px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .s0203_common_btn {
+            font-size: 8px;
+            font-weight: 500;
+            padding: 5px 10px;
+            border: 1px solid var(--primaryColor);
+            background: var(--primaryColor);
+            color: var(--secondaryColor);
+            outline: none;
+            cursor: pointer;
+        }
+
+        .s0203_common_btn:hover {
+            background: #1E272E;
+            border: 1px solid #1E272E;
+            color: #fff;
+        }
+
+        /* ====== carousel ===== */
+
+
+        .s0203_carousel_slider_section {
+            position: relative;
+            overflow: hidden;
+            background-color: #fff;
+            z-index: 2;
+            width: 100%;
+            height: 170px;
+        }
+
+        .s0203_carousel_item::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .05);
+            z-index: -1;
+        }
+
+        .s0203_carousel_item {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .s0203_carousel_item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            mix-blend-mode: darken;
+
+        }
+
+        /* s0203_carousel_caption */
+
+        .s0203_carousel_caption {
+            width: 180px;
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            visibility: hidden;
+            transition: all .3s ease;
+        }
+
+        .s0203_caption_animate{
+            top: 50%;
+            visibility: visible;
+            opacity: 1;
+            transition: all .3s ease;
+        }
+
+
+
+        .s0203_caption_title_wrapper {
+            margin-bottom: 6px;
+        }
+
+        .s0203_caption_title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #1E272E;
+        }
+
+        .s0203_caption_details_txt_wrapper {
+            margin-bottom: 10px;
+        }
+
+        .s0203_caption_details_txt {
+            font-size: 7px;
+            line-height: 12px;
+            font-weight: 400;
+            color: rgba(30, 39, 46, 0.5);
+        }
+
+        .s0203_shop_btn {
+            padding: 5px 10px;
+            font-size: 8px;
+        }
+
+
+        /* s0203_carousel_indicators */
+
+
+        .s0203_carousel_dots {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        .s0203_carousel_dot {
+            width: 6px;
+            height: 6px;
+            border: 1px solid #95CA33;
+            position: relative;
+            transform: rotate(45deg);
+        }
+
+        .s0203_dot_active {
+            background-color: #95CA33;
+        }
+
+        /* s0203_carousel_slide_items */
+
+        .s0203_carousel_item{
+            /* position: absolute; */
+            top: 0;
+            left: 0;
+            /* z-index: 1; */
+            width: 100%;
+            height: 100%;
+        }
+
+
+        /* s0203_carousel_item */
+
+        /* .s0203_carousel_item:nth-child(1){
+            transform: translateX(-100%);
+        }
+        .s0203_carousel_item:nth-child(2){
+            transform: translateX(-200%);
+        }
+        .s0203_carousel_item:nth-child(3){
+            transform: translateX(-300%);
+        } */
+
+        /* .s0203_animate_slide{
+            transform: translateX(0) !important;
+        }
+
+  
+
+
+        .s0203_carousel_item:nth-child(2) .s0203_carousel_caption{
+            width: 160px;
+            left: 10%;
+        }
+
+        
+        .s0203_carousel_item:nth-child(2).s0203_carousel_item img{
+            mix-blend-mode: multiply !important;
+        } */
+
+        .carousel-slider{
+            display: flex;
+            width: 100%;
+        }
+        .carousel-container{
+            width: 100%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+
+        @media screen and (min-width:640px) {
+            .s0203_carousel_slider_section{
+                height:320px;
+            }
+
+
+            /* s0203_carousel_caption */
+            .s0203_carousel_caption {
+                width: 300px;
+                left: 53%;
+            }
+
+            .s0203_caption_title_wrapper {
+                margin-bottom: 15px;
+            }
+
+            .s0203_caption_title {
+                font-size: 24px;
+            }
+
+            .s0203_caption_details_txt_wrapper {
+                margin-bottom: 25px;
+            }
+
+            .s0203_caption_details_txt {
+                font-size: 12px;
+                line-height: 22px;
+            }
+
+            .s0203_shop_btn_wrapper .s0203_shop_btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            /* s0203_carousel_indicators */
+
+            .s0203_carousel_dots {
+                gap: 10px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .s0203_carousel_dot {
+                width: 10px;
+                height: 10px;
+
+            }
+
+
+        }
+
+        @media screen and (min-width:1025px) {
+
+            .s0203_carousel_slider_section{
+                height: 620px;
+            }
+
+            /* s0203_carousel_caption */
+            .s0203_carousel_caption {
+                width: 400px;
+                left: 56%;
+            }
+
+            .s0203_caption_title_wrapper {
+                margin-bottom: 20px;
+            }
+
+            .s0203_caption_title {
+                font-size: 36px;
+            }
+
+            .s0203_caption_details_txt_wrapper {
+                margin-bottom: 30px;
+            }
+
+            .s0203_caption_details_txt {
+                font-size: 14px;
+                line-height: 24px;
+            }
+            .s0203_carousel_item:nth-child(2) .s0203_carousel_caption{
+                width:400px;
+                left: 20%;
+            }
+        }
+        
+        @media screen and (min-width:1367px) {
+
+        /* s0203_carousel_caption */
+        .s0203_carousel_caption {
+            width: 540px;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <div class="s0203_carousel_slider_section s0203_universal">
+
+        <!-- s0203_carousel_indicators -->
+        <div class="s0203_carousel_indicators">
+            <div class="s0203_carousel_dots" id="s0203_carousel_dots_id">
+                <div class="s0203_carousel_dot s0203_dot_active" id="s0203_carousel_dot_1">
+
+                </div>
+                <div class="s0203_carousel_dot" id="s0203_carousel_dot_2">
+
+                </div>
+                <div class="s0203_carousel_dot" id="s0203_carousel_dot_3">
+
+                </div>
+                <!-- <div class="s0203_carousel_dot">
+
+                </div> -->
+
+            </div>
+        </div>
+        <div class="s0203_carousel_slide_items carousel-container">
+            <div class="carousel-slider" id="carousel-slider_id">
+                <div class="s0203_carousel_item" id="lastClone">
+                    <img src="slider_image/Texture.png" alt="slide_image1">
+                    <!-- s0203_carousel_caption -->
+                    <div class="s0203_carousel_caption s0203_caption_animate">
+                        <div class="s0203_caption_title_wrapper">
+                            <p class="s0203_caption_title">Clean. Green. Healthy.</p>
+                        </div>
+                        <div class="s0203_caption_details_txt_wrapper">
+                            <p class="s0203_caption_details_txt">Green and healthy veggies here for you to eat clean. The
+                                cleaner you eat the healthier you get. Veggies a day is a healthy way.</p>
+                        </div>
+                        <div class="s0203_shop_btn_wrapper">
+                            <button type="button" class="s0203_shop_btn s0203_common_btn">Shop Now</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- s0203_carousel_item -->
+                <div class="s0203_carousel_item ">
+                    <img src="slider_image/Texture.png" alt="slide_image1">
+                    <!-- s0203_carousel_caption -->
+                    <div class="s0203_carousel_caption s0203_caption_animate">
+                        <div class="s0203_caption_title_wrapper">
+                            <p class="s0203_caption_title">Clean. Green. Healthy.</p>
+                        </div>
+                        <div class="s0203_caption_details_txt_wrapper">
+                            <p class="s0203_caption_details_txt">Green and healthy veggies here for you to eat clean. The
+                                cleaner you eat the healthier you get. Veggies a day is a healthy way.</p>
+                        </div>
+                        <div class="s0203_shop_btn_wrapper">
+                            <button type="button" class="s0203_shop_btn s0203_common_btn">Shop Now</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- s0203_carousel_item s0203_animate_slide-->
+                <div class="s0203_carousel_item ">
+                    <img src="slider_image/BG2.png" alt="slide_image1">
+                    <!-- s0203_carousel_caption -->
+                    <div class="s0203_carousel_caption s0203_caption_animate">
+                        <div class="s0203_caption_title_wrapper">
+                            <p class="s0203_caption_title">Clean. Green. Healthy.</p>
+                        </div>
+                        <div class="s0203_caption_details_txt_wrapper">
+                            <p class="s0203_caption_details_txt">Green and healthy veggies here for you to eat clean. The
+                                cleaner you eat the healthier you get. Veggies a day is a healthy way.</p>
+                        </div>
+                        <div class="s0203_shop_btn_wrapper">
+                            <button type="button" class="s0203_shop_btn s0203_common_btn">Shop Now</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- s0203_carousel_item -->
+                <div class="s0203_carousel_item ">
+                    <img src="slider_image/Texture.png" alt="slide_image1">
+                    <!-- s0203_carousel_caption -->
+                    <div class="s0203_carousel_caption s0203_caption_animate">
+                        <div class="s0203_caption_title_wrapper">
+                            <p class="s0203_caption_title">Clean. Green. Healthy.</p>
+                        </div>
+                        <div class="s0203_caption_details_txt_wrapper">
+                            <p class="s0203_caption_details_txt">Green and healthy veggies here for you to eat clean. The
+                                cleaner you eat the healthier you get. Veggies a day is a healthy way.</p>
+                        </div>
+                        <div class="s0203_shop_btn_wrapper">
+                            <button type="button" class="s0203_shop_btn s0203_common_btn">Shop Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="s0203_carousel_item" id="firstClone">
+                    <img src="slider_image/Texture.png" alt="slide_image1">
+                    <!-- s0203_carousel_caption -->
+                    <div class="s0203_carousel_caption s0203_caption_animate">
+                        <div class="s0203_caption_title_wrapper">
+                            <p class="s0203_caption_title">Clean. Green. Healthy.</p>
+                        </div>
+                        <div class="s0203_caption_details_txt_wrapper">
+                            <p class="s0203_caption_details_txt">Green and healthy veggies here for you to eat clean. The
+                                cleaner you eat the healthier you get. Veggies a day is a healthy way.</p>
+                        </div>
+                        <div class="s0203_shop_btn_wrapper">
+                            <button type="button" class="s0203_shop_btn s0203_common_btn">Shop Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+    <button id="prevBtn">Prev</button>
+        <button id="nextBtn">Next</button>
+
+        <script>
+            let carouselSlide = document.querySelector(".carousel-slider");
+            let carouselImages = document.querySelectorAll(".carousel-slider .s0203_carousel_item");
+        
+        
+            const prevBtn = document.querySelector(`#prevBtn`);
+            const nextBtn = document.querySelector(`#nextBtn`);
+            const nextBtn1 = document.getElementById("s0203_carousel_dots_id").querySelector(`#s0203_carousel_dot_1`);
+            const nextBtn2 = document.getElementById("s0203_carousel_dots_id").querySelector(`#s0203_carousel_dot_2`);
+            const nextBtn3 = document.getElementById("s0203_carousel_dots_id").querySelector(`#s0203_carousel_dot_3`);
+            console.log(nextBtn3)
+
+            let counter = 1;
+            // const size = carouselImages[0].clientWidth;
+            const size = 100;
+
+            carouselSlide.style.transform = "translateX(" + (-size * counter) + "%";
+
+            nextBtn.addEventListener("click",()=>{
+                if(counter >= carouselImages.length - 1) return;
+                carouselSlide.style.transition = "transform 0.4s ease-in-out";
+                counter++;
+                carouselSlide.style.transform = "translateX(" + (-size * counter) + "%";
+            });
+            prevBtn.addEventListener("click",()=>{
+                if(counter <= 0) return;
+                carouselSlide.style.transition = "transform 0.4s ease-in-out";
+                counter--;
+                carouselSlide.style.transform = "translateX(" + (-size * counter) + "%";
+            });
+
+            // ****************
+            nextBtn3.addEventListener("click",()=>{
+                // if(counter >= carouselImages.length - 1) return;
+                carouselSlide.style.transition = "transform 0.4s ease-in-out";
+                // counter++;
+                counter = 3;
+                carouselSlide.style.transform = "translateX(" + (-size * counter) + "%";
+                console.log("hi")
+            });
+
+            // *********
+
+            // **********************
+            document.getElementById("carousel-slider_id").addEventListener("mouseover",()=>{
+                clearInterval(carouselTranslate);
+            });
+            document.getElementById("carousel-slider_id").addEventListener("mouseout",()=>{
+                carouselTranslate =  setInterval(changer,1500);
+            });
+
+            // ************************
+
+            carouselSlide.addEventListener("transitionend", ()=>{
+                if(carouselImages[counter].id === "lastClone"){
+                    carouselSlide.style.transition = "none";
+                    counter = carouselImages.length-2;
+                    carouselSlide.style.transform = "translateX(" + (-size * counter) + "%";
+                }
+                if(carouselImages[counter].id === "firstClone"){
+                    carouselSlide.style.transition = "none";
+                    counter = carouselImages.length-counter;
+                    carouselSlide.style.transform = "translateX(" + (-size * counter) + "%";
+                }
+            });
+
+            function changer(){
+                if(counter >= carouselImages.length - 1) return;
+                carouselSlide.style.transition = "transform 0.4s ease-in-out";
+                counter++;
+                carouselSlide.style.transform = "translateX(" + (-size * counter) + "%";
+            }
+            let carouselTranslate =  setInterval(changer,1500);
+        </script>
+</body>
+
+</html>
